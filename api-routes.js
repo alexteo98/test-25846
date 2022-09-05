@@ -1,6 +1,7 @@
 // Filename: api-routes.js
 // Initialize express router
-let router = require('express').Router();
+import express from 'express'
+let router = express.Router();
 // Set default API response
 router.get('/', function (req, res) {
     res.status(200)
@@ -32,4 +33,4 @@ router.delete('/', function (req, res) {
 
 
 // Export API routes
-module.exports = router;
+export default router;
