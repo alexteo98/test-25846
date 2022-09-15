@@ -1,4 +1,4 @@
-import { UserModel } from './user-model.js';
+import { UserDetailsModel, UserModel } from './user-model.js';
 import 'dotenv/config'
 
 import mongoose from 'mongoose';
@@ -37,5 +37,29 @@ export async function deleteUser(params) {
     } catch (err){
         //console.log('error occured on delete')
         return { err }
+    }
+}
+
+export async function getUserDetails(_email){
+    try{
+        var res = {}
+        const query = UserDetailsModel.find({email: _email}).exec();
+        await query.then(function (userDetails) {
+            if (userDetails && userDetails.length > 0){
+                res = userDetails[0]
+            }
+        })
+
+        return res
+    } catch(err){
+        return { err }
+    }
+}
+
+export async function setUserDetails(params) {
+    try{
+        return UserDetailsModel(params)
+    } catch(err){
+        return {err}
     }
 }

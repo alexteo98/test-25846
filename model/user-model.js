@@ -23,9 +23,6 @@ let UserDetailsModelSchema = new Schema({
     },
     address: {
         type: String
-    },
-    github: {
-        type: String
     }
 })
 

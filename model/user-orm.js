@@ -1,4 +1,4 @@
-import { createUser, deleteUser } from "./repository.js";
+import { createUser, deleteUser, getUserDetails, setUserDetails } from "./repository.js";
 
 // export async function ormGetSeatStatus(_seatId) {
 //     try{
@@ -28,6 +28,25 @@ export async function ormDeleteUser(params){
         var res = await deleteUser(params)
         return res
     } catch(err) {
+        return { err }
+    }
+}
+
+export async function ormGetUserDetails(_email){
+    try{
+        var res = await getUserDetails(_email)
+        return res
+    } catch(err){
+        return { err }
+    }
+}
+
+export async function ormSetUserDetails(params) {
+    try{
+        var res = await setUserDetails(params)
+        res.save()
+        return res
+    } catch (err) {
         return { err }
     }
 }
