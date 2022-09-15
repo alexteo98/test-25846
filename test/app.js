@@ -28,6 +28,191 @@ describe('hello world test', () => {
  })
 })
 
+describe('Insert test', () => {
+  beforeEach(async () => {
+    // before each test delete all users table data
+    await UserModel.deleteMany({});
+    await UserDetailsModel.deleteMany({});
+  });
+
+  after(async () => {
+    await UserModel.deleteMany({});
+    await UserDetailsModel.deleteMany({});
+  })
+
+  const user = { email: "test", password: "test" }
+  const blankEmailUser = { email:"", password: "test" }
+  const missingEmailUser = { password: "test" }
+  const blankPasswordUser = { email:"test", password: "" }
+  const missingPasswordUser = { email:"test"}
+  const blankEmailPasswordUser = { email:"", password: "" }
+  const missingEmailPasswordUser = { }
+
+  it("Insert normal user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(user)
+    .end( (err,res) => {
+      expect(res).to.have.status(201);
+      done();
+    })
+  })
+
+  it("Insert blank email user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(blankEmailUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Insert blank password user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(blankPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Insert blank email, password user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(blankEmailPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Insert missing email user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(missingEmailUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Insert missing password user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(missingPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Insert missing email, password user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(missingEmailPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+})
+
+describe('Delete test', () => {
+  const user = { email: "test", password: "test" }
+  const blankEmailUser = { email:"", password: "test" }
+  const missingEmailUser = { password: "test" }
+  const blankPasswordUser = { email:"test", password: "" }
+  const missingPasswordUser = { email:"test"}
+  const blankEmailPasswordUser = { email:"", password: "" }
+  const missingEmailPasswordUser = { }
+
+
+  beforeEach(async () => {
+    // before each test delete all users table data
+    await UserModel.deleteMany({});
+    await UserDetailsModel.deleteMany({});
+    const user = UserModel({ email: "test", password: "test" })
+    user.save()
+  });
+
+  after(async () => {
+    await UserModel.deleteMany({});
+    await UserDetailsModel.deleteMany({});
+  })
+
+  it("Delete normal user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(user)
+    .end( (err,res) => {
+      expect(res).to.have.status(200);
+      done();
+    })
+  })
+
+  it("Delete blank email user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(blankEmailUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Delete blank password user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(blankPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Delete blank email,password user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(blankEmailPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Delete missing email user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(missingEmailUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Delete missing password user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(missingPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+
+  it("Delete missing email,password user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(missingEmailPasswordUser)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+})
+
 describe('Insert and Remove test', () => {
   before(async () => {
     // before each test delete all users table data
@@ -108,67 +293,87 @@ describe('Repeated Insert test', () => {
     })
   })
 })
-// describe("Hello World Test", () => {
-//     it("Display welcome message", done => {
-//    chai.request(app)
-//    .get('/')
-//    .end((err, res) => {
-//     expect(res).to.have.status(200);
-//     expect(res.text).to.equal(HELLO_WORLD_STRING);
-//     done();
-//    });
-//    });
-// });
 
-// describe("Testing API Calls", () => {
-//     const apiRoute = '/ticketing/api'
-//     describe("Testing GET requests", () => {
-//         it("should return default GET message", done => {
-//             chai.request(app)
-//             .get(apiRoute)
-//             .end( (err,res) => {
-//                 expect(res).to.have.status(200);
-//                 expect(res.body.message).to.equal(SAMPLE_GET_STRING);
-//                 done();
-//             })
-//         })
-//     })
+describe ('Unsupported methods test', () => {
+  it("/PATCH", done => {
+    chai.request(app)
+    .patch(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
 
-//     describe("Testing POST requests", () => {
-//         it("should return default POST message", done => {
-//             chai.request(app)
-//             .post(apiRoute)
-//             .end( (err,res) => {
-//                 expect(res).to.have.status(200);
-//                 expect(res.body.message).to.equal(SAMPLE_POST_STRING);
-//                 done();
-//             })
-//         })
-//     })
+  it("/COPY", done => {
+    chai.request(app)
+    .copy(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
 
-//     describe("Testing PUT requests", () => {
-//         it("should return default PUT message", done => {
-//             chai.request(app)
-//             .put(apiRoute)
-//             .end( (err,res) => {
-//                 expect(res).to.have.status(200);
-//                 expect(res.body.message).to.equal(SAMPLE_PUT_STRING);
-//                 done();
-//             })
-//         })
-//     })
+  it("/OPTIONS", done => {
+    chai.request(app)
+    .options(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
 
-//     describe("Testing DELETE requests", () => {
-//         it("should return default DELETE message", done => {
-//             chai.request(app)
-//             .delete(apiRoute)
-//             .end( (err,res) => {
-//                 expect(res).to.have.status(200);
-//                 expect(res.body.message).to.equal(SAMPLE_DELETE_STRING);
-//                 done();
-//             })
-//         })
-//     })
-// })
+  it("/LINK", done => {
+    chai.request(app)
+    .link(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
 
+  it("/UNLINK", done => {
+    chai.request(app)
+    .unlink(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
+
+  it("/PURGE", done => {
+    chai.request(app)
+    .purge(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
+
+  it("/LOCK", done => {
+    chai.request(app)
+    .lock(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
+
+  it("/UNLOCK", done => {
+    chai.request(app)
+    .unlock(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
+
+  it("/PROPFIND", done => {
+    chai.request(app)
+    .propfind(API_ROUTE)
+    .end( (err,res) => {
+      expect(res).to.have.status(405)
+      done()
+    })
+  })
+})
 
