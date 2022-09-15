@@ -1,4 +1,4 @@
-process.env.NODE_ENV= 'TEST'
+process.env.NODE_ENV= 'LOCAL'
 
 import chaihttp from 'chai-http';
 import app from '../app.js';
@@ -12,26 +12,102 @@ import { json } from 'express';
 const { expect } = chai;
 chai.use(chaihttp)
 
-let mongoDB = process.env.DB_CLOUD_URI_TEST
+let mongoDB = process.env.ENV == "PROD" ? process.env.DB_CLOUD_URI_PROD : process.env.ENV == "TEST" ? process.env.DB_CLOUD_URI_TEST : process.env.DB_LOCAL_URI;
 
-describe('api test', () => {
-    before(async () => {
-        // before each test delete all users table data
-        await UserModel.deleteMany({});
-        await UserDetailsModel.deleteMany({});
-      });
+const API_ROUTE = '/ticketing/api'
 
-    it("Display welcome message", done => {
-           chai.request(app)
-           .get('/')
-           .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.text).to.equal(HELLO_WORLD_STRING);
-            done();
-           });  
-        })
+describe('hello world test', () => {
+  it("Display welcome message", done => {
+    chai.request(app)
+    .get('/')
+    .end((err, res) => {
+     expect(res).to.have.status(200);
+     expect(res.text).to.equal(HELLO_WORLD_STRING);
+     done();
+    });  
+ })
 })
 
+describe('Insert and Remove test', () => {
+  before(async () => {
+    // before each test delete all users table data
+    await UserModel.deleteMany({});
+    await UserDetailsModel.deleteMany({});
+  });
+
+  const user = { email: "test", password: "test" }
+
+  it("Insert new user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(user)
+    .end( (err,res) => {
+      expect(res).to.have.status(201);
+      done();
+    })
+  })
+  
+  it("Delete user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(user)
+    .end( (err,res) => {
+      expect(res).to.have.status(200);
+      done();
+    })
+  })
+})
+
+
+describe('Empty DB Remove test', () => {
+  before(async () => {
+    // before each test delete all users table data
+    await UserModel.deleteMany({});
+    await UserDetailsModel.deleteMany({});
+  });
+
+  const user = { email: "test", password: "test" }
+  
+  it("Delete user from DB", done => {
+    chai.request(app)
+    .delete(API_ROUTE)
+    .send(user)
+    .end( (err,res) => {
+      expect(res).to.have.status(403);
+      done();
+    })
+  })
+})
+
+describe('Repeated Insert test', () => {
+  before(async () => {
+    // before each test delete all users table data
+    await UserModel.deleteMany({});
+    await UserDetailsModel.deleteMany({});
+  });
+
+  const user = { email: "test", password: "test" }
+  
+  it("Insert new user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(user)
+    .end( (err,res) => {
+      expect(res).to.have.status(201);
+      done();
+    })
+  })
+
+  it("Insert repeated user into DB", done => {
+    chai.request(app)
+    .post(API_ROUTE)
+    .send(user)
+    .end( (err,res) => {
+      expect(res).to.have.status(400);
+      done();
+    })
+  })
+})
 // describe("Hello World Test", () => {
 //     it("Display welcome message", done => {
 //    chai.request(app)

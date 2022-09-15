@@ -2,7 +2,7 @@ import { UserModel } from './user-model.js';
 import 'dotenv/config'
 
 import mongoose from 'mongoose';
-import { json } from 'express';
+import { json, response } from 'express';
 
 let mongoDB = process.env.ENV == "PROD" ? process.env.DB_CLOUD_URI_PROD : process.env.ENV == "TEST" ? process.env.DB_CLOUD_URI_TEST : process.env.DB_LOCAL_URI;
 
@@ -24,6 +24,18 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // }
 
 export async function createUser(params) {
-    console.log(params)
+    //console.log(params)
     return UserModel(params)
+}
+
+export async function deleteUser(params) {
+    try{
+        //console.log(params)
+        var res = await UserModel.deleteOne({params})
+        //console.log(res)
+        return res
+    } catch (err){
+        //console.log('error occured on delete')
+        return { err }
+    }
 }
