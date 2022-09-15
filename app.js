@@ -1,6 +1,6 @@
 import { HELLO_WORLD_STRING } from './constants.js';
 import express from 'express'
-import ticketingRoutes from './routes/ticketing-routes.js'
+import userRoutes from './routes/users-routes.js'
 import detailsRouter from './routes/details-routes.js';
 const app = express()
 app.use(express.urlencoded({ extended: true }))
@@ -16,7 +16,7 @@ app.listen(port, () => {
 })
 
 // Use Api routes in the App
-app.use('/ticketing/api', ticketingRoutes)
-app.use('/details/api', detailsRouter)
+app.use('/users', userRoutes)
+app.use('/details', detailsRouter)
 
 export default app

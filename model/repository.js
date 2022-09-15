@@ -11,18 +11,6 @@ mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// export async function getSeatStatus(_seatId) {
-//     var res = false
-//     const query = SeatModel.find({ _seatId }).exec()
-//     await query.then( function(seat) {
-//         if (seat && seat.length > 0){
-//             res = seat[0].status
-//         }
-//     })
-
-//     return res;
-// }
-
 export async function createUser(params) {
     //console.log(params)
     return UserModel(params)
@@ -31,8 +19,7 @@ export async function createUser(params) {
 export async function deleteUser(params) {
     try{
         //console.log(params)
-        var res = await UserModel.deleteOne({params})
-        //console.log(res)
+        var res = await UserModel.deleteOne(params)
         return res
     } catch (err){
         //console.log('error occured on delete')
