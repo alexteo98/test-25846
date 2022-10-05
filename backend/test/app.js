@@ -332,15 +332,6 @@ describe('Users tests', () => {
       })
     })
 
-    it("/OPTIONS", done => {
-      chai.request(app)
-      .options(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
     it("/LINK", done => {
       chai.request(app)
       .link(API_ROUTE)
