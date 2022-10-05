@@ -34,3 +34,4 @@ Simple API deployed to heroku.
 ## Task B4 - Pull data from serverless function
 - [] Deploying a serverless function to Google Functions/AWS Lambda/Azure Functions
 - [] Ability to interact with the serverless API using the frontend
+
