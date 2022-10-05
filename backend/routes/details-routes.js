@@ -3,7 +3,7 @@ import { getUserDetails, setUserDetails } from '../controller/controller.js'
 import { NOT_SUPPORTED_CODE } from '../constants.js'
 let detailsRouter = express.Router();
 
-detailsRouter.get('/', getUserDetails);
+detailsRouter.post('/', getUserDetails);
 detailsRouter.put('/', setUserDetails);
 
 detailsRouter.all('/', function (req, res) {
