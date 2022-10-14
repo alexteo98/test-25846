@@ -15,6 +15,11 @@ jobs:
     defaults:
       run:
         working-directory: ./backend
+
+    env:
+      ENV: TEST
+      DB_CLOUD_URI_TEST: ${{ secrets.DB_CLOUD_URI_TEST }}
+
     steps:
       - uses: actions/checkout@v2
       - run: npm ci
