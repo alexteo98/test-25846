@@ -1,4 +1,4 @@
-name: deploy-to-eb
+name: AWS Deployment
 
 on: 
   push:
@@ -10,7 +10,18 @@ on:
         description: 'aws'
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm test
+
   deploy:
+    needs: test
     runs-on: ubuntu-latest
 
     defaults:
