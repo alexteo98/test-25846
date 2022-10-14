@@ -1,11 +1,15 @@
 import { HELLO_WORLD_STRING } from './constants.js';
 import express from 'express'
+import cors from 'cors';
 import userRoutes from './routes/users-routes.js'
 import detailsRouter from './routes/details-routes.js';
+
 const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 const port = process.env.PORT || 3000
+app.use(cors()) // config cors so that front-end can use
+app.options('*', cors())
 
 app.get('/', (req, res) => {
   res.send(HELLO_WORLD_STRING)

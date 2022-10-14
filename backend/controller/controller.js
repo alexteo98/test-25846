@@ -64,6 +64,7 @@ export async function deleteUser(req,res) {
 export async function getUserDetails(req, res) {
     try{
         const { email } = req.body;
+        console.log(email)
         if (email){
             var resp = await _getUserDetails(email)
             console.log(Object.keys(resp).length)
