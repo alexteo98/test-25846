@@ -1,6 +1,4 @@
 import { UserDetailsModel, UserModel } from './user-model.js';
-import 'dotenv/config'
-
 import mongoose from 'mongoose';
 import { json, response } from 'express';
 

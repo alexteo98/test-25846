@@ -7,7 +7,7 @@ import detailsRouter from './routes/details-routes.js';
 const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 app.use(cors()) // config cors so that front-end can use
 app.options('*', cors())
 
