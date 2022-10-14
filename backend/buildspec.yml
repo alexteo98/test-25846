@@ -1,9 +1,0 @@
-version: 0.2
-phases:
-  install:
-    runtime-versions:
-      node: latest
-  pre_build:
-    commands:
-      - npm clean install
-      - npm start
