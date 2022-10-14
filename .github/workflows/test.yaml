@@ -1,0 +1,26 @@
+name: Continous Testing
+
+on: 
+  push:
+    branches: [ "**" ]
+
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'test'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    env:
+      ENV: TEST
+      DB_CLOUD_URI_TEST: ${{ secrets.DB_CLOUD_URI_TEST }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm test

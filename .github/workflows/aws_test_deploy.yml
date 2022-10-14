@@ -2,7 +2,7 @@ name: AWS Deployment
 
 on: 
   push:
-    branches: [ "**" ]
+    branches: [ "main" , "master" ]
 
   workflow_dispatch:
     inputs:
