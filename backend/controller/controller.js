@@ -1,7 +1,8 @@
 import { ormCreateUser as _createUser,
     ormDeleteUser as _deleteUser,
     ormGetUserDetails as _getUserDetails, 
-    ormSetUserDetails as _setUserDetails 
+    ormSetUserDetails as _setUserDetails,
+    ormGetUserSet as _getUserSet
 } from "../model/user-orm.js"
 
 import {
@@ -18,7 +19,9 @@ import {
     GENERAL_SERVER_CODE,
     GENERAL_SERVER_MESSAGE,
     CONFLICTING_USER_CODE,
-    CONFLICTING_USER_MESSAGE
+    CONFLICTING_USER_MESSAGE,
+    NO_DATA_FOUND_CODE,
+    NO_DATA_FOUND_MESSAGE
 } from '../constants.js'
 
 export async function createUser(req,res) {
@@ -69,9 +72,9 @@ export async function getUserDetails(req, res) {
             var resp = await _getUserDetails(email)
             console.log(Object.keys(resp).length)
             if (Object.keys(resp).length == 0)
-                return res.status(WRONG_CREDENTIALS_CODE).json({status:WRONG_CREDENTIALS_CODE, message: WRONG_CREDENTIALS_MESSAGE })
+                return res.status(NO_DATA_FOUND_CODE).json({status:NO_DATA_FOUND_CODE, message: NO_DATA_FOUND_MESSAGE })
             else
-                return res.status(200).json(resp)
+                return res.status(OK_CODE).json(resp)
         } else {
             return res.status(MISSING_CREDENTIALS_CODE).json({ status:MISSING_CREDENTIALS_CODE, message: MISSING_CREDENTIALS_MESSAGE })
         }
@@ -97,6 +100,15 @@ export async function setUserDetails(req,res) {
         return res.status(GENERAL_SERVER_CODE).json({ status:GENERAL_SERVER_CODE, message: GENERAL_SERVER_MESSAGE, error: err })
     }
     
+}
+
+export async function getUserSet(req,res) {
+    try{
+        var resp = await _getUserSet()
+        return res.status(OK_CODE).json({ status: CREATED_CODE, users: resp })
+    } catch (err) {
+        return res.status(GENERAL_SERVER_CODE).json({ status:GENERAL_SERVER_CODE, message: GENERAL_SERVER_MESSAGE, error: err })
+    }
 }
 
 

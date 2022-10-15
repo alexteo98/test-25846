@@ -1,9 +1,10 @@
 import { UserDetailsModel, UserModel } from './user-model.js';
 import mongoose from 'mongoose';
-import { json, response } from 'express';
+import dotenv from 'dotenv'
+dotenv.config()
 
 let mongoDB = process.env.ENV == "PROD" ? process.env.DB_CLOUD_URI_PROD : process.env.ENV == "TEST" ? process.env.DB_CLOUD_URI_TEST : process.env.DB_LOCAL_URI;
-
+//let mongoDB = process.env.DB_CLOUD_URI_TEST
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 
 let db = mongoose.connection;
@@ -46,5 +47,14 @@ export async function setUserDetails(params) {
         return UserDetailsModel(params)
     } catch(err){
         return {err}
+    }
+}
+
+export async function getUserSet() {
+    try{
+        const userSet = UserDetailsModel.distinct("email")
+        return userSet
+    } catch (err) {
+        return { err }
     }
 }

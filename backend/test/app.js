@@ -1,9 +1,7 @@
-process.env.NODE_ENV= 'LOCAL'
-
 import chaihttp from 'chai-http';
 import app from '../app.js';
 import chai from 'chai';
-import { CONFLICTING_USER_CODE, HELLO_WORLD_STRING } from '../constants.js';
+import { CONFLICTING_USER_CODE, HELLO_WORLD_STRING, NO_DATA_FOUND_CODE, NO_DATA_FOUND_MESSAGE } from '../constants.js';
 import 'dotenv/config'
 import { UserModel, UserDetailsModel } from '../model/user-model.js';
 
@@ -20,8 +18,9 @@ import {
   NOT_SUPPORTED_CODE
 } from '../constants.js'
 
+process.env.ENV= 'TEST'
 let mongoDB = process.env.ENV == "PROD" ? process.env.DB_CLOUD_URI_PROD : process.env.ENV == "TEST" ? process.env.DB_CLOUD_URI_TEST : process.env.DB_LOCAL_URI;
-
+mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 
 describe('Users tests', () => {
   const API_ROUTE = '/users'
@@ -394,7 +393,7 @@ describe ("User details tests", () => {
   describe('Set User details test', () => {
     const user = { email: "test", phone: 111, address: "test"}
     const missingEmailUser = { email: "", phone: 111, address: "test"}
-    const missingPhoneUser = { email: "test", phone: 111, address: "test"}
+    const missingPhoneUser = { email: "test", phone: "", address: "test"}
     const missingAddressUser = { email: "test", phone: 111, address: ""}
 
     beforeEach(async () => {
@@ -448,5 +447,52 @@ describe ("User details tests", () => {
       })
     })
 
+  })
+
+  describe('Get User details test', () => {
+    const testEmail = "test"
+    const invalidEmail = "INVALID"
+    const testPhone = 111
+    const testAddress = "test address"
+    const BLANK = ""
+    const requestUserDetails = { email: testEmail }
+    const requestInvalidUserDetails = { email: invalidEmail }
+
+    const user = { email: testEmail, phone: testPhone, address: testAddress }
+
+    beforeEach(async () => {
+        // before each test delete all users table data
+        await UserDetailsModel.deleteMany({});
+        const newUser = UserDetailsModel(user)
+        newUser.save()
+      });
+    
+      after(async () => {
+        await UserDetailsModel.deleteMany({});
+      })
+      
+      it("Get normal user test", done => {
+        chai.request(app)
+        .post(API_ROUTE)
+        .send(requestUserDetails)
+        .end( (req,res) => {
+          expect(res).to.have.status(OK_CODE)
+          expect(res.body.email).to.equal(testEmail)
+          expect(res.body.phone).to.equal(testPhone)
+          expect(res.body.address).to.equal(testAddress)
+          done()
+        })
+      })
+
+      it("Get invalid user test", done => {
+        chai.request(app)
+        .post(API_ROUTE)
+        .send(requestInvalidUserDetails)
+        .end( (req,res) => {
+          expect(res).to.have.status(NO_DATA_FOUND_CODE)
+          expect(res.body.message).to.equal(NO_DATA_FOUND_MESSAGE)
+          done()
+        })
+      })
   })
 })
