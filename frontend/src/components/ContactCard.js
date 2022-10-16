@@ -1,31 +1,42 @@
 import {
     Typography,
-    CardContent
+    CardContent,
+    Card
 } from "@mui/material";
+import { Box } from "@mui/system";
 
 function ContactCard(objects) {
     try{
     return objects.map((contact, i) => {
         return (
-            <div>
-                <div key={i}>
-                    <CardContent>
-                        <Typography sx={{ fontSize: 14 }}>
-                            Email: {contact.email}
-                        </Typography>
-                        <Typography sx={{ fontSize: 14 }}>
-                            Phone: {contact.phone}
-                        </Typography>
-                        <Typography sx={{ fontSize: 14 }}>
-                            Address: {contact.address}
-                        </Typography>
-                    </CardContent>
+                <div width={200}>
+                    <Box fullwidth key={i}>
+                        <Card variant="outlined">
+                            <CardContent>
+                                <Typography sx={{ fontSize: 14 }}>
+                                    Email: {contact.email}
+                                </Typography>
+                                <Typography sx={{ fontSize: 14 }}>
+                                    Phone: {contact.phone}
+                                </Typography>
+                                <Typography sx={{ fontSize: 14 }}>
+                                    Address: {contact.address}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
                 </div>
-            </div>
+
         )
     })
 } catch (err) {
-    return <div></div>
+    return (
+    <div>
+        <Box fullwidth>
+            No results!            
+        </Box>
+    </div>
+    )
 }
 }
 
