@@ -1,4 +1,4 @@
-import { createUser, deleteUser, getUserDetails, getUserSet, setUserDetails } from "./repository.js";
+import { createUser, deleteUser, getUserDetails, getUserSet, setUserDetails, authUser } from "./repository.js";
 
 // export async function ormGetSeatStatus(_seatId) {
 //     try{
@@ -9,15 +9,15 @@ import { createUser, deleteUser, getUserDetails, getUserSet, setUserDetails } fr
 //     }
 // }
 
-export async function ormCreateUser(params){
+export async function ormCreateUser(_email, _password){
     try{
         //console.log("trying to create user")
-        const newSeat = await createUser(params)
+        const newSeat = await createUser({email: _email, password: _password, role: "user"})
         await newSeat.save()
         return true;
     } catch (err){
         //console.log("error occured")
-        //console.log(err)
+        console.log(err)
         return { err }
     }
 }
@@ -56,6 +56,21 @@ export async function ormGetUserSet() {
         var res = await getUserSet()
         return res
     } catch (err){
+        return { err }
+    }
+}
+
+export async function ormAuthUser(params) {
+    // wrong credentials return error
+    try{
+        var res = await authUser(params)
+        //console.log(res)
+        if (res.err) {
+            return { err }
+        }
+
+        return res
+    } catch(err) {
         return { err }
     }
 }

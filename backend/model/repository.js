@@ -15,6 +15,18 @@ export async function createUser(params) {
     return UserModel(params)
 }
 
+export async function authUser(params) {
+    try{
+        var res = await UserModel.findOne(params)
+        if (res != null) {
+            return res.role
+        }
+        return { err }
+    } catch (err) {
+        return { err }
+    }
+}
+
 export async function deleteUser(params) {
     try{
         //console.log(params)

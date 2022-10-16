@@ -105,12 +105,16 @@ function MainPage() {
 
     const updateSearchResult = () => {
         console.log(emailQuery)
-        query(emailQuery).then(result => {
-            const contact = {email: result.email, phone: result.phone, address: result.address}
-            setQueryResult([ contact ])
-        }).catch(err => {
-            setQueryResult([])
-        })
+        if (!emailQuery || emailQuery==""){
+            loadAllUsers()
+        } else {
+            query(emailQuery).then(result => {
+                const contact = {email: result.email, phone: result.phone, address: result.address}
+                setQueryResult([ contact ])
+            }).catch(err => {
+                setQueryResult([])
+            })
+        }
     }
 
     useEffect(() => {
@@ -157,10 +161,14 @@ function MainPage() {
                 <div>
                     <div>{_spacing(10)}</div>
                     <div>
-                        <TextField fullWidth id="email_tb" label="Search Email" variant="outlined" onChange={(e) => setEmailQuery(e.target.value)}></TextField>
+                        <TextField 
+                            fullWidth id="email_tb" 
+                            label="Search Email" 
+                            variant="outlined" 
+                            onChange={(e) => setEmailQuery(e.target.value)}/>
                     </div>
                     <div>
-                        <Button onClick={()=>{}}>Search</Button>
+                        <Button onClick={updateSearchResult}>Search</Button>
                     </div>
                 </div>
 

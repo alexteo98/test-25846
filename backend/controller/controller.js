@@ -2,7 +2,8 @@ import { ormCreateUser as _createUser,
     ormDeleteUser as _deleteUser,
     ormGetUserDetails as _getUserDetails, 
     ormSetUserDetails as _setUserDetails,
-    ormGetUserSet as _getUserSet
+    ormGetUserSet as _getUserSet,
+    ormAuthUser as _authUser
 } from "../model/user-orm.js"
 
 import {
@@ -24,11 +25,14 @@ import {
     NO_DATA_FOUND_MESSAGE
 } from '../constants.js'
 
+import jwt from "jsonwebtoken"
+const SECRET_KEY = "TEST_KEY"
+
 export async function createUser(req,res) {
     try{
         const { email, password, phone } = req.body
         if (email && password){
-            const resp = await _createUser(req.body)
+            const resp = await _createUser(email,password)
             if (resp.err){
                 return res.status(CONFLICTING_USER_CODE).json({status: CONFLICTING_USER_CODE, message: CONFLICTING_USER_MESSAGE});
             }else {
@@ -111,4 +115,23 @@ export async function getUserSet(req,res) {
     }
 }
 
+export async function authUser(req,res) {
+    try{
+        const { email, password } = req.body
+        if (!email || email=="" || !password || password==""){
+            return res.status(MISSING_CREDENTIALS_CODE).json({ status:MISSING_CREDENTIALS_CODE, message: MISSING_CREDENTIALS_MESSAGE })
+        }
+        
+        var resp = await _authUser({email,password})
 
+        if (resp.err){
+            return res.status(WRONG_CREDENTIALS_CODE).json({ status:WRONG_CREDENTIALS_CODE, message: WRONG_CREDENTIALS_MESSAGE })
+        }
+        // sign token and return
+        const user = { email: email, role: resp }
+        let token = jwt.sign(user,SECRET_KEY)
+        return res.status(OK_CODE).json({ status:OK_CODE, token: token })
+    } catch (err) {
+        return res.status(GENERAL_SERVER_CODE).json({ status:GENERAL_SERVER_CODE, message: GENERAL_SERVER_MESSAGE, error: err })
+    }
+}
