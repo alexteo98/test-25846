@@ -130,7 +130,7 @@ export async function authUser(req,res) {
         // sign token and return
         const user = { email: email, role: resp }
         let token = jwt.sign(user,SECRET_KEY)
-        return res.status(OK_CODE).json({ status:OK_CODE, token: token })
+        return res.header("x-auth-token", token).status(OK_CODE).json({ status:OK_CODE, token: token })
     } catch (err) {
         return res.status(GENERAL_SERVER_CODE).json({ status:GENERAL_SERVER_CODE, message: GENERAL_SERVER_MESSAGE, error: err })
     }

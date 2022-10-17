@@ -7,8 +7,8 @@ import axios from 'axios'
 function LoginCard({ updateLogin }) {
     const [isLogin, setIsLogin] = React.useState(false)
 
-    const [loginEmail, setLoginEmail] = React.useState("qq")
-    const [loginPw, setLoginPw] = React.useState("qq")
+    const [loginEmail, setLoginEmail] = React.useState("")
+    const [loginPw, setLoginPw] = React.useState("")
 
     const handleLogin = async () => {
         axios.post(URL_LOGIN_ROUTE, { email: loginEmail, password: loginPw }).then(res => {
