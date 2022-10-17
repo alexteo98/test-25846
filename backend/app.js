@@ -25,6 +25,5 @@ app.listen(port, () => {
 // Use Api routes in the App
 app.use('/users', userRoutes)
 app.use('/details', detailsRouter)
-app.use('/login', authRouter)
 
 export default app
