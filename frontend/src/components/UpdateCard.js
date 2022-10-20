@@ -1,5 +1,5 @@
 import { Stack, TextField, Box, Typography, Button } from "@mui/material"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 function UpdateCard({ updateLogin }) {
@@ -10,6 +10,12 @@ function UpdateCard({ updateLogin }) {
     const handleLogout = async () => {
         updateLogin(false)
     }
+
+
+
+    useEffect(() => {
+        //
+    })
 
     return (
         <React.Fragment>

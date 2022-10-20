@@ -11,6 +11,10 @@ function LoginCard({ updateLogin }) {
     const [loginPw, setLoginPw] = React.useState("")
 
     const handleLogin = async () => {
+        if (loginEmail == "" || loginPw == ""){
+            alert("Email and Password fields cannot be empty!")
+            return
+        }
         axios.post(URL_LOGIN_ROUTE, { email: loginEmail, password: loginPw }).then(res => {
             console.log(res)
             setLoginEmail("")
@@ -23,6 +27,10 @@ function LoginCard({ updateLogin }) {
     }
 
     const handleSignup = async () => {
+        if (loginEmail == "" || loginPw == ""){
+            alert("Email and Password fields cannot be empty!")
+            return
+        }
         axios.post(URL_SIGNUP_ROUTE,{ email: loginEmail, password: loginPw }).then(res => {
             console.log(res)
             alert("Signup success")
