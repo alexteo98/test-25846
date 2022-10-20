@@ -23,7 +23,6 @@ let mongoDB = process.env.ENV == "PROD" ? process.env.DB_CLOUD_URI_PROD : proces
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 
 describe('Users tests', () => {
-  const API_ROUTE = '/users'
 
   describe('hello world test', () => {
     it("Display welcome message", done => {
@@ -38,6 +37,7 @@ describe('Users tests', () => {
   })
 
   describe('Insert test', () => {
+    const API_ROUTE = '/users/signup'
     beforeEach(async () => {
       // before each test delete all users table data
       await UserModel.deleteMany({});
@@ -129,6 +129,8 @@ describe('Users tests', () => {
   })
 
   describe('Delete test', () => {
+    const API_ROUTE = '/users/delete'
+
     const user = { email: "test", password: "test" }
     const blankEmailUser = { email:"", password: "test" }
     const missingEmailUser = { password: "test" }
@@ -233,6 +235,9 @@ describe('Users tests', () => {
   })
 
   describe('Insert and Remove test', () => {
+    const API_ROUTE_SIGNUP = '/users/signup'
+    const API_ROUTE_DELETE = '/users/delete'
+
     before(async () => {
       // before each test delete all users table data
       await UserModel.deleteMany({});
@@ -243,7 +248,7 @@ describe('Users tests', () => {
 
     it("Insert new user into DB", done => {
       chai.request(app)
-      .post(API_ROUTE)
+      .post(API_ROUTE_SIGNUP)
       .send(user)
       .end( (err,res) => {
         expect(res).to.have.status(CREATED_CODE);
@@ -253,7 +258,7 @@ describe('Users tests', () => {
     
     it("Delete user from DB", done => {
       chai.request(app)
-      .delete(API_ROUTE)
+      .delete(API_ROUTE_DELETE)
       .send(user)
       .end( (err,res) => {
         expect(res).to.have.status(OK_CODE);
@@ -263,6 +268,9 @@ describe('Users tests', () => {
   })
 
   describe('Empty DB Remove test', () => {
+    const API_ROUTE_SIGNUP = '/users/signup'
+    const API_ROUTE_DELETE = '/users/delete'
+
     before(async () => {
       // before each test delete all users table data
       await UserModel.deleteMany({});
@@ -273,7 +281,7 @@ describe('Users tests', () => {
     
     it("Delete user from DB", done => {
       chai.request(app)
-      .delete(API_ROUTE)
+      .delete(API_ROUTE_DELETE)
       .send(user)
       .end( (err,res) => {
         expect(res).to.have.status(WRONG_CREDENTIALS_CODE);
@@ -283,6 +291,9 @@ describe('Users tests', () => {
   })
 
   describe('Repeated Insert test', () => {
+    const API_ROUTE_SIGNUP = '/users/signup'
+    const API_ROUTE_DELETE = '/users/delete'
+    
     before(async () => {
       // before each test delete all users table data
       await UserModel.deleteMany({});
@@ -293,7 +304,7 @@ describe('Users tests', () => {
     
     it("Insert new user into DB", done => {
       chai.request(app)
-      .post(API_ROUTE)
+      .post(API_ROUTE_SIGNUP)
       .send(user)
       .end( (err,res) => {
         expect(res).to.have.status(CREATED_CODE);
@@ -303,7 +314,7 @@ describe('Users tests', () => {
 
     it("Insert repeated user into DB", done => {
       chai.request(app)
-      .post(API_ROUTE)
+      .post(API_ROUTE_SIGNUP)
       .send(user)
       .end( (err,res) => {
         expect(res).to.have.status(CONFLICTING_USER_CODE);
@@ -312,79 +323,6 @@ describe('Users tests', () => {
     })
   })
 
-  describe ('Unsupported methods test', () => {
-    it("/PATCH", done => {
-      chai.request(app)
-      .patch(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
-    it("/COPY", done => {
-      chai.request(app)
-      .copy(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
-    it("/LINK", done => {
-      chai.request(app)
-      .link(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
-    it("/UNLINK", done => {
-      chai.request(app)
-      .unlink(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
-    it("/PURGE", done => {
-      chai.request(app)
-      .purge(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
-    it("/LOCK", done => {
-      chai.request(app)
-      .lock(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
-    it("/UNLOCK", done => {
-      chai.request(app)
-      .unlock(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-
-    it("/PROPFIND", done => {
-      chai.request(app)
-      .propfind(API_ROUTE)
-      .end( (err,res) => {
-        expect(res).to.have.status(NOT_SUPPORTED_CODE)
-        done()
-      })
-    })
-  })
 })
 
 describe ("User details tests", () => {
