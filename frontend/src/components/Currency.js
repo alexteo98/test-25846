@@ -24,10 +24,17 @@ function CurrencyPanel() {
     return (
         <React.Fragment>
             <Typography variant={"h5"} textAlign="center" marginBottom={"0.25rem"}>Recommended Currencies</Typography>
-
+            <Box sx={{
+                width: "100%",
+                height: 30,
+            }}/>
             <Grid container spacing={1}>
                 {CurrencyCard(currencies)}
             </Grid>
+            <Box sx={{
+                width: "100%",
+                height: 50,
+            }}/>
         </React.Fragment>
     )
 }

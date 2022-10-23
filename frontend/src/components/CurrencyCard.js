@@ -14,7 +14,11 @@ function CurrencyCard(objects) {
     return objects.map((currency, i) => {
         return (
             <React.Fragment key={i}>
-                <Grid item xs={2}>{currency[0]}: {currency[1]}</Grid>
+                <Grid item xs={2}>
+                    <Box variant="outlined" sx={{ border: '1px solid grey', borderRadius: '16px', textAlign: 'center'}}>
+                        {currency[0]}: {currency[1]}
+                    </Box>
+                </Grid>
             </React.Fragment>
         )
     })
