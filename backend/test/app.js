@@ -145,7 +145,7 @@ describe('Users tests', () => {
       await UserModel.deleteMany({});
       await UserDetailsModel.deleteMany({});
       const user = UserModel({ email: "test", password: "test", role: "user" })
-      user.save()
+      await user.save()
     });
 
     after(async () => {
@@ -402,7 +402,7 @@ describe ("User details tests", () => {
         // before each test delete all users table data
         await UserDetailsModel.deleteMany({});
         const newUser = UserDetailsModel(user)
-        newUser.save()
+        await newUser.save()
       });
     
       after(async () => {
