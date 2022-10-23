@@ -1,5 +1,5 @@
 import { Stack, TextField, Box, Typography, Button } from "@mui/material"
-import { URL_LOGIN_ROUTE, URL_SIGNUP_ROUTE } from "../utils/constants"
+import { URL_LOGIN_ROUTE, URL_SIGNUP_ROUTE, URL_DELETE_ROUTE } from "../utils/constants"
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
@@ -21,6 +21,23 @@ function LoginCard({ updateLogin, setLoggedInEmail }) {
             setLoginPw("")
             setLoggedInEmail(loginEmail)
             updateLogin(true)
+        }).catch(err => {
+            console.log(err.response)
+            alert("Please check your credentials")
+        })
+    }
+
+    const handleDelete = async () => {
+        if (loginEmail == "" || loginPw == ""){
+            alert("Email and Password fields cannot be empty!")
+            return
+        }
+        console.log(loginPw)
+        axios.delete(URL_DELETE_ROUTE, { data: { email: loginEmail, password: loginPw }}).then(res => {
+            console.log(res)
+            alert("Account deleted")
+            setLoginEmail("")
+            setLoginPw("")
         }).catch(err => {
             console.log(err.response)
             alert("Please check your credentials")
@@ -55,6 +72,7 @@ function LoginCard({ updateLogin, setLoggedInEmail }) {
                 <TextField label="Password" value={loginPw} onChange={e=>setLoginPw(e.target.value)} variant="outlined" type="password"/>
                 <Button variant="outlined" onClick={handleLogin}>Login</Button>
                 <Button variant="outlined" onClick={handleSignup}>Signup</Button>
+                <Button variant="outlined" onClick={handleDelete}>Delete Account</Button>
             </Stack>
         </React.Fragment>
     )
