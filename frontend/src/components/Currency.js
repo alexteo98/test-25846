@@ -1,4 +1,4 @@
-import { Container, Typography, Box } from "@mui/material"
+import { Container, Typography, Box, Grid } from "@mui/material"
 import React, { useEffect } from 'react'
 import axios from "axios"
 import { stub } from "../utils/stub.js"
@@ -24,7 +24,10 @@ function CurrencyPanel() {
     return (
         <React.Fragment>
             <Typography variant={"h5"} textAlign="center" marginBottom={"0.25rem"}>Recommended Currencies</Typography>
-            <div> {CurrencyCard(currencies)} </div>
+
+            <Grid container spacing={1}>
+                {CurrencyCard(currencies)}
+            </Grid>
         </React.Fragment>
     )
 }

@@ -2,7 +2,8 @@ import {
     Typography,
     CardContent,
     Card,
-    InputLabel
+    InputLabel,
+    Grid
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
@@ -13,7 +14,7 @@ function CurrencyCard(objects) {
     return objects.map((currency, i) => {
         return (
             <React.Fragment key={i}>
-                {currency[0]}: {currency[1]} {"\t"}
+                <Grid item xs={2}>{currency[0]}: {currency[1]}</Grid>
             </React.Fragment>
         )
     })
