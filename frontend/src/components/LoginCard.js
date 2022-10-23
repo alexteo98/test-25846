@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 
-function LoginCard({ updateLogin }) {
+function LoginCard({ updateLogin, setLoggedInEmail }) {
     const [isLogin, setIsLogin] = React.useState(false)
 
     const [loginEmail, setLoginEmail] = React.useState("")
@@ -19,6 +19,7 @@ function LoginCard({ updateLogin }) {
             console.log(res)
             setLoginEmail("")
             setLoginPw("")
+            setLoggedInEmail(loginEmail)
             updateLogin(true)
         }).catch(err => {
             console.log(err.response)

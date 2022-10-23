@@ -56,6 +56,8 @@ export async function getUserDetails(_email){
 
 export async function setUserDetails(params) {
     try{
+        const query = UserDetailsModel.findOneAndDelete({email: params.email}).exec();
+        await query.then(() => {})
         return UserDetailsModel(params)
     } catch(err){
         return {err}

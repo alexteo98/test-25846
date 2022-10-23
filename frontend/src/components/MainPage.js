@@ -72,6 +72,7 @@ const loadAllUsers1 = async () => {
 
 function MainPage() {
     const [isLogin, setIsLogin] = React.useState(false)
+    const [loggedInEmail, setLoggedInEmail] = React.useState("")
     const [emailQuery, setEmailQuery] = React.useState("")
     const [queryResult, setQueryResult] = React.useState([])
     //const [queryResult, setQueryResult] = React.useState({})
@@ -117,6 +118,10 @@ function MainPage() {
         }
     }
 
+    const resetSearch = () => {
+        loadAllUsers().then(res => console.log(res)).catch(err => console.log(err))
+    }
+
     useEffect(() => {
         async function loadAllUsers2 () {
             const res = await getUserSet()
@@ -151,8 +156,8 @@ function MainPage() {
                     <Stack direction="row">
                         {
                             !isLogin 
-                            ? <LoginCard updateLogin={setIsLogin}/>
-                            : <UpdateCard updateLogin={setIsLogin}/>
+                            ? <LoginCard updateLogin={setIsLogin} setLoggedInEmail={setLoggedInEmail}/>
+                            : <UpdateCard updateLogin={setIsLogin} _email={loggedInEmail} loadAllUsers={loadAllUsers}/>
                         }
                     </Stack>
                     <div>{_spacing(30)}</div>
@@ -169,6 +174,7 @@ function MainPage() {
                     </div>
                     <div>
                         <Button onClick={updateSearchResult}>Search</Button>
+                        <Button onClick={resetSearch}>Reset</Button>
                     </div>
                 </div>
 
