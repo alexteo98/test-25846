@@ -18,6 +18,7 @@ import axios from "axios";
 import ContactCard from "./ContactCard";
 import LoginCard from "./LoginCard";
 import UpdateCard from "./UpdateCard";
+import CurrencyPanel from "./Currency";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -142,6 +143,9 @@ function MainPage() {
 
     return (
         <div>
+            <div>
+                <CurrencyPanel/>
+            </div>
             <Container>
                 <div>
                     <Box sx={{
