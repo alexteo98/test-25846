@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "c8d31f5d-63bc-4c36-813f-a2766e54ee38",
+		"name": "Submission Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Valid",
+			"item": [
+				{
+					"name": "Hello World Get",
+					"item": [
+						{
+							"name": "Hello World - Valid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}",
+									"host": [
+										"{{URL}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create - Login - Delete",
+					"item": [
+						{
+							"name": "Create User - Valid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/signup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login - Valid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User - Valid",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/delete",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Users",
+					"item": [
+						{
+							"name": "Get user set - Valid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/details/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add user to user details - Valid",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"phone\": 111,\r\n    \"address\": \"add\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/details",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user details - Valid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/details/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Updating user details",
+					"item": [
+						{
+							"name": "Add user to user details - Valid",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@email\",\r\n    \"phone\": 111\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/details",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adding additional param - Valid",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@email\",\r\n    \"phone\": 111,\r\n    \"address\": \"add1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/details",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Invalid",
+			"item": [
+				{
+					"name": "Repeated User Creation",
+					"item": [
+						{
+							"name": "Delete User - Setup",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"role\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/delete",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User - Valid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/signup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User - Invalid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/signup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Repeated User Deletion",
+					"item": [
+						{
+							"name": "Delete User - Setup",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/delete",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User - Setup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/signup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User - Valid",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/delete",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User - Invalid",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/delete",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Invalid Login Params",
+					"item": [
+						{
+							"name": "Login Empty Email - Invalid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Empty Password - Invalid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test1@email\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Empty - Invalid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test1@email\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get non-existent user details",
+					"item": [
+						{
+							"name": "Get user details - Invalid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zxcvbbn\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/details/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Invalid user details params",
+					"item": [
+						{
+							"name": "Empty params - Invalid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zxcvbbn\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/details/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

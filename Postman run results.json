@@ -1,0 +1,480 @@
+{
+	"id": "cc6c48c5-96bc-4084-97ab-d6362177bad3",
+	"name": "Submission Collection",
+	"timestamp": "2022-10-23T16:08:51.649Z",
+	"collection_id": "0-c8d31f5d-63bc-4c36-813f-a2766e54ee38",
+	"folder_id": 0,
+	"environment_id": "327ce1bc-9290-4c71-ae79-a9982038d4ce",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "d0d7fb36-bc7b-4e1f-a540-a328a3a159c4",
+			"name": "Hello World - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "34352cf9-6b2d-41b4-80aa-cf28b2aa717e",
+			"name": "Create User - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/signup",
+			"time": 17,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				17
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c5ef2b4c-6764-40df-826b-e4875bfb2b19",
+			"name": "Login - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/login",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "108cc937-99fa-455e-8f7d-6cf020079309",
+			"name": "Delete User - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/delete",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				33
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "82d38b95-04dc-468a-bb60-2bcdb13eaa6c",
+			"name": "Get user set - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/details/",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "506f8907-8d1e-4d34-9760-2adbb49614c7",
+			"name": "Add user to user details - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/details",
+			"time": 43,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				43
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "14446e0a-9177-4e79-95f8-5c25bb479c8f",
+			"name": "Get user details - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/details/",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d903ec7e-fa7f-440f-a565-f311be519963",
+			"name": "Add user to user details - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/details",
+			"time": 40,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				40
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a23582ce-c97a-464f-b1e0-682cce98ef54",
+			"name": "Adding additional param - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/details",
+			"time": 30,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				30
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d2b4654a-b934-4c9a-982a-e676b00ca044",
+			"name": "Delete User - Setup",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/delete",
+			"time": 17,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				17
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "23577e78-86aa-4a27-9f34-4aa9960c7e5a",
+			"name": "Create User - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/signup",
+			"time": 27,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				27
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4b4a5a2d-071e-4a16-a36e-3ff7fefb66f7",
+			"name": "Create User - Invalid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/signup",
+			"time": 26,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				26
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "5a757d4c-4b4d-44b4-93ba-2d69e29b32fe",
+			"name": "Delete User - Setup",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/delete",
+			"time": 20,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				20
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "44b586d7-564d-4fd2-9bae-1365022f2232",
+			"name": "Create User - Setup",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/signup",
+			"time": 28,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				28
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a6ad6850-1923-4c45-9864-a150d62bf561",
+			"name": "Delete User - Valid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/delete",
+			"time": 27,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				27
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "204b70bc-f20c-475d-b0b6-93ebbb1de5f1",
+			"name": "Delete User - Invalid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/delete",
+			"time": 22,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				22
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2fe0ec89-0f0e-41ae-b71a-ac48a73a3ff4",
+			"name": "Login Empty Email - Invalid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/login",
+			"time": 7,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2b8e8490-ff6e-44cb-b0a1-8241e7367e02",
+			"name": "Login Empty Password - Invalid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/login",
+			"time": 8,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0a45d0e3-211d-4fa5-9807-3b110fcc217d",
+			"name": "Login Empty - Invalid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/users/login",
+			"time": 9,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f339c139-b6e1-477b-a8a7-fc72853041b6",
+			"name": "Get user details - Invalid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/details/",
+			"time": 10,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "5af419db-2534-4b8e-8e27-2dffe45c5a6c",
+			"name": "Empty params - Invalid",
+			"url": "http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com/details/",
+			"time": 10,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 411,
+	"collection": {
+		"requests": [
+			{
+				"id": "d0d7fb36-bc7b-4e1f-a540-a328a3a159c4",
+				"method": "GET"
+			},
+			{
+				"id": "34352cf9-6b2d-41b4-80aa-cf28b2aa717e",
+				"method": "POST"
+			},
+			{
+				"id": "c5ef2b4c-6764-40df-826b-e4875bfb2b19",
+				"method": "POST"
+			},
+			{
+				"id": "108cc937-99fa-455e-8f7d-6cf020079309",
+				"method": "DELETE"
+			},
+			{
+				"id": "82d38b95-04dc-468a-bb60-2bcdb13eaa6c",
+				"method": "GET"
+			},
+			{
+				"id": "506f8907-8d1e-4d34-9760-2adbb49614c7",
+				"method": "PUT"
+			},
+			{
+				"id": "14446e0a-9177-4e79-95f8-5c25bb479c8f",
+				"method": "POST"
+			},
+			{
+				"id": "d903ec7e-fa7f-440f-a565-f311be519963",
+				"method": "PUT"
+			},
+			{
+				"id": "a23582ce-c97a-464f-b1e0-682cce98ef54",
+				"method": "PUT"
+			},
+			{
+				"id": "d2b4654a-b934-4c9a-982a-e676b00ca044",
+				"method": "DELETE"
+			},
+			{
+				"id": "23577e78-86aa-4a27-9f34-4aa9960c7e5a",
+				"method": "POST"
+			},
+			{
+				"id": "4b4a5a2d-071e-4a16-a36e-3ff7fefb66f7",
+				"method": "POST"
+			},
+			{
+				"id": "5a757d4c-4b4d-44b4-93ba-2d69e29b32fe",
+				"method": "DELETE"
+			},
+			{
+				"id": "44b586d7-564d-4fd2-9bae-1365022f2232",
+				"method": "POST"
+			},
+			{
+				"id": "a6ad6850-1923-4c45-9864-a150d62bf561",
+				"method": "DELETE"
+			},
+			{
+				"id": "204b70bc-f20c-475d-b0b6-93ebbb1de5f1",
+				"method": "DELETE"
+			},
+			{
+				"id": "2fe0ec89-0f0e-41ae-b71a-ac48a73a3ff4",
+				"method": "POST"
+			},
+			{
+				"id": "2b8e8490-ff6e-44cb-b0a1-8241e7367e02",
+				"method": "POST"
+			},
+			{
+				"id": "0a45d0e3-211d-4fa5-9807-3b110fcc217d",
+				"method": "POST"
+			},
+			{
+				"id": "f339c139-b6e1-477b-a8a7-fc72853041b6",
+				"method": "POST"
+			},
+			{
+				"id": "5af419db-2534-4b8e-8e27-2dffe45c5a6c",
+				"method": "POST"
+			}
+		]
+	}
+}
