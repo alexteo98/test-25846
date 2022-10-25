@@ -81,15 +81,15 @@ function MainPage() {
 
     const _getUserSet = async () => {
         const res = await getUserSet()
-        setUserSet(res)
+        setUserSet(prev => { return res })
         //console.log(userSet)
     }
 
     const loadAllUsers = async () => {
         var resultSet = []
-        await _getUserSet()
+        const res = await getUserSet()
 
-        for(const user of userSet) {
+        for(const user of res) {
             const result = await query(user)
             //console.log(result)
             const _email = result.email
@@ -138,6 +138,7 @@ function MainPage() {
             }
             setQueryResult(resultSet)
         }
+
         loadAllUsers2()
     }, [])
 
@@ -160,7 +161,7 @@ function MainPage() {
                     <Stack direction="row">
                         {
                             !isLogin 
-                            ? <LoginCard updateLogin={setIsLogin} setLoggedInEmail={setLoggedInEmail}/>
+                            ? <LoginCard updateLogin={setIsLogin} setLoggedInEmail={setLoggedInEmail} loadAllUsers={loadAllUsers}/>
                             : <UpdateCard updateLogin={setIsLogin} _email={loggedInEmail} loadAllUsers={loadAllUsers}/>
                         }
                     </Stack>

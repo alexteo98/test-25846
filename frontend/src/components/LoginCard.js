@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 
-function LoginCard({ updateLogin, setLoggedInEmail }) {
+function LoginCard({ updateLogin, setLoggedInEmail, loadAllUsers }) {
     const [isLogin, setIsLogin] = React.useState(false)
 
     const [loginEmail, setLoginEmail] = React.useState("")
@@ -28,20 +28,24 @@ function LoginCard({ updateLogin, setLoggedInEmail }) {
     }
 
     const handleDelete = async () => {
-        if (loginEmail == "" || loginPw == ""){
-            alert("Email and Password fields cannot be empty!")
-            return
-        }
-        console.log(loginPw)
-        axios.delete(URL_DELETE_ROUTE, { data: { email: loginEmail, password: loginPw }}).then(res => {
-            console.log(res)
-            alert("Account deleted")
-            setLoginEmail("")
-            setLoginPw("")
-        }).catch(err => {
+        try{
+            if (loginEmail == "" || loginPw == ""){
+                alert("Email and Password fields cannot be empty!")
+                return
+            }
+
+            console.log(loginPw)
+            const res = await axios.delete(URL_DELETE_ROUTE, { data: { email: loginEmail, password: loginPw }})
+            if (res.status == 200){
+                alert("Account deleted")
+                setLoginEmail("")
+                setLoginPw("")
+                await loadAllUsers()
+            }
+        } catch (err) {
             console.log(err.response)
             alert("Please check your credentials")
-        })
+        }
     }
 
     const handleSignup = async () => {

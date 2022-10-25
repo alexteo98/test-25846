@@ -31,7 +31,8 @@ export async function deleteUser(params) {
     try{
         //console.log(params)
         var res = await UserModel.deleteOne(params)
-        return res
+        var res1 = await UserDetailsModel.deleteOne({email: params.email})
+        return res && res1
     } catch (err){
         //console.log('error occured on delete')
         return { err }

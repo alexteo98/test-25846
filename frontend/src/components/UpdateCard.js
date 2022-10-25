@@ -29,7 +29,6 @@ function UpdateCard({updateLogin, _email, loadAllUsers}) {
             const res = await axios.put(URL_DETAILS_ROUTE,{email: email,phone: _phone, address: _address})
             //console.log(res)
             await loadAllUsers()
-            alert("Fields updated successfully.")
         } catch (err){
             console.log("error occured when updating info")
             console.log(err)

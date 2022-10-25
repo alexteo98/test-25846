@@ -1,9 +1,9 @@
-//export const URL_BACKEND = 'http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com' || 'http://localhost:8080'
-export const URL_BACKEND = 'http://localhost:8080'
+export const BACKEND_DEPLOYMENT_URL = 'http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com'
+//export const BACKEND_DEPLOYMENT_URL = 'http://localhost:8080'
 
-export const URL_LOGIN_ROUTE = URL_BACKEND + "/users/login"
-export const URL_SIGNUP_ROUTE = URL_BACKEND + "/users/signup"
-export const URL_DELETE_ROUTE = URL_BACKEND + "/users/delete"
+export const URL_LOGIN_ROUTE = BACKEND_DEPLOYMENT_URL + "/users/login"
+export const URL_SIGNUP_ROUTE = BACKEND_DEPLOYMENT_URL + "/users/signup"
+export const URL_DELETE_ROUTE = BACKEND_DEPLOYMENT_URL + "/users/delete"
 
-export const URL_DETAILS_ROUTE = URL_BACKEND + "/details"
+export const URL_DETAILS_ROUTE = BACKEND_DEPLOYMENT_URL + "/details"
 

@@ -13,13 +13,18 @@ function CurrencyPanel() {
     useEffect(() => {
         async function getRecommendedCurrencies() {
             const res = await axios.get(URL)
-            console.log(res.data)
+            //console.log(res.data)
+            setCurrencies(Object.entries(res.data))
+            return res.data
         }
 
+
+        // Use actual
         //getRecommendedCurrencies()
+
+        // Use stub
         setCurrencies(Object.entries(stub))
-        console.log(currencies)
-        //console.log(Object.entries(currencies))
+        
     }, [])
     return (
         <React.Fragment>

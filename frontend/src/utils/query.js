@@ -1,6 +1,7 @@
 import axios from "axios";
+import { BACKEND_DEPLOYMENT_URL } from "./constants";
 
-const URI_HOSTNAME = process.env.URI_USER_SVC || 'http://localhost:8080'
+const URI_HOSTNAME = BACKEND_DEPLOYMENT_URL
 const URI_USER_DETAILS_SUFFIX = '/details'
 const URI = URI_HOSTNAME+URI_USER_DETAILS_SUFFIX
 
