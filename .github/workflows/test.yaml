@@ -1,9 +1,6 @@
 name: Continous Testing
 
 on: 
-  push:
-    branches: [ "**" ]
-
   workflow_dispatch:
     inputs:
       tags:
