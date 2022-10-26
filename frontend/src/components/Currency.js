@@ -20,10 +20,10 @@ function CurrencyPanel() {
 
 
         // Use actual
-        //getRecommendedCurrencies()
+        getRecommendedCurrencies()
 
         // Use stub
-        setCurrencies(Object.entries(stub))
+        // setCurrencies(Object.entries(stub))
         
     }, [])
     return (

@@ -1,10 +1,43 @@
-import { Stack, TextField, Box, Typography, Button } from "@mui/material"
+import { Stack, TextField, Box, Typography, Button, StyledEngineProvider } from "@mui/material"
 import { URL_LOGIN_ROUTE, URL_SIGNUP_ROUTE, URL_DELETE_ROUTE } from "../utils/constants"
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+import {makeStyles} from "@mui/styles"
+
+const useStyles = makeStyles({
+    background: {
+        backgroundColor:"#000000"
+    },
+    outline: {
+        outline: "solid 2px"
+    },
+    backgroundDarkBlue: {
+        backgroundColor: "#153462"
+    },
+    backgroundTeal: {
+        backgroundColor: "#4FA095"
+    },
+    backgroundLightBlue: {
+        backgroundColor: "#BAD1C2"
+    },
+    textAlignCenter: {
+        textAlign: "center"
+    },
+    buttonStyle: {
+        outline: "solid 2px #4FA095",
+        borderRadius: "10px",
+        backgroundColor: "#4FA095",
+        borderColor: "#4FA095",
+        margin: '0.4rem 0 0 0'
+    }
+
+})
+
 
 function LoginCard({ updateLogin, setLoggedInEmail, loadAllUsers }) {
+    const classes = useStyles();
+
     const [isLogin, setIsLogin] = React.useState(false)
 
     const [loginEmail, setLoginEmail] = React.useState("")
@@ -67,23 +100,27 @@ function LoginCard({ updateLogin, setLoggedInEmail, loadAllUsers }) {
             
         })
     }
-
+    
     return (
         <React.Fragment>
+            <StyledEngineProvider injectFirst>
             <Stack direction={"column"} width={300}>
                 <Typography variant={"h5"} textAlign="center" marginBottom={"0.25rem"}>Update Details</Typography>
                 <TextField label="Email" value={loginEmail} onChange={e=>setLoginEmail(e.target.value)} variant="outlined"/>
                 <TextField label="Password" value={loginPw} onChange={e=>setLoginPw(e.target.value)} variant="outlined" type="password"/>
-                <Button variant="outlined" onClick={handleLogin}>Login</Button>
-                <Button variant="outlined" onClick={handleSignup}>Signup</Button>
-                <Button variant="outlined" onClick={handleDelete}>Delete Account</Button>
+                <Button className={`${classes.buttonStyle} ${classes.textAlignCenter}`} onClick={handleLogin}>
+                    <Typography color={'black'}>Login</Typography>
+                </Button>
+                <Button className={`${classes.buttonStyle} ${classes.textAlignCenter}`} onClick={handleSignup}>
+                    <Typography color={'black'}>Signup</Typography>
+                </Button>
+                <Button className={`${classes.buttonStyle} ${classes.textAlignCenter}`} onClick={handleDelete}>
+                    <Typography color={'black'}>Delete Account</Typography>
+                </Button>
             </Stack>
+            </StyledEngineProvider>
         </React.Fragment>
     )
 }
-
-LoginCard.propTypes = {
-    setToken: PropTypes.func.isRequired
-  }
 
 export default LoginCard

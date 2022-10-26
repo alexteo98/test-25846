@@ -5,7 +5,7 @@ import {Box} from "@mui/material";
 function App() {
     return (
         <div className="App">
-            <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
+            <Box display={"flex"} flexDirection={"column"} padding={"4rem"} backgroundColor={"#F6F6C9"}>
                 <Router>
                     <Routes>
                         <Route path="/mainpage" element={<MainPage/>}/>

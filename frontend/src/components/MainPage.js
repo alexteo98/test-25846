@@ -20,15 +20,7 @@ import LoginCard from "./LoginCard";
 import UpdateCard from "./UpdateCard";
 import CurrencyPanel from "./Currency";
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
-
-    const _spacing = gap => (
+const _spacing = gap => (
     <React.Fragment>
       <Box sx={{
                 width: "100%",
@@ -43,33 +35,6 @@ const Item = styled(Paper)(({ theme }) => ({
     return res.data
 }
 
-let userSet1 = []
-const getUserSet1 = async () => {
-    const res = await getUserSet()
-    userSet1 = res
-    //console.log(userSet)
-}
-
-let resultSet1 = []
-
-const loadAllUsers1 = async () => {
-    var resultSet = []
-    await getUserSet1()
-
-    for(const user of userSet1) {
-        const result = await query(user)
-        //console.log(result)
-        const _email = result.email
-        const _phone = result.phone
-        const _address = result.address
-        const contact = {email: _email, phone:_phone, address:_address}
-        resultSet.push(contact)
-    }
-
-    return resultSet
-    //setQueryResult(resultSet)
-    //console.log('user details',resultSet)
-}
 
 function MainPage() {
     const [isLogin, setIsLogin] = React.useState(false)
@@ -131,12 +96,13 @@ function MainPage() {
         loadAllUsers2()
     }, [])
 
+
     return (
         <div>
-            <div>
-                <CurrencyPanel/>
-            </div>
             <Container>
+                <div>
+                    <CurrencyPanel/>
+                </div>
                 <div>
                     <Box sx={{
                         width: "100%",
@@ -147,29 +113,14 @@ function MainPage() {
                 </div>
 
                 <div>
-                    <Stack direction="row">
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                         {
                             !isLogin 
                             ? <LoginCard updateLogin={setIsLogin} setLoggedInEmail={setLoggedInEmail} loadAllUsers={loadAllUsers}/>
                             : <UpdateCard updateLogin={setIsLogin} _email={loggedInEmail} loadAllUsers={loadAllUsers}/>
                         }
-                    </Stack>
+                    </div>
                     <div>{_spacing(30)}</div>
-                </div>
-
-                <div>
-                    <div>{_spacing(10)}</div>
-                    <div>
-                        <TextField 
-                            fullWidth id="email_tb" 
-                            label="Search Email" 
-                            variant="outlined" 
-                            onChange={(e) => setEmailQuery(e.target.value)}/>
-                    </div>
-                    <div>
-                        <Button onClick={updateSearchResult}>Search</Button>
-                        <Button onClick={resetSearch}>Reset</Button>
-                    </div>
                 </div>
 
                 <div>{_spacing(30)}</div>
