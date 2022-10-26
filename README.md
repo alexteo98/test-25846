@@ -11,7 +11,13 @@ Simple Web app functioning like 'yellow pages' hosted on AWS Elastic Beanstalk
 1. Run `npm install`
 1. Run `npm start`
 1. Using Postman, send 'GET', 'POST', 'PUT', 'DELETE' requests to http://localhost:8080/
-1. To run tests, run `npm test`
+    1. Import [Postman Collection.json](./Postman%20Collection.json) to postman
+	1. Change variable `URL` to local endpoint
+	1. Run collection
+	1. *** - Setup: Ignore, used to set up for some tests
+	1. *** - Valid: Should return HTTP codes 200+
+	1. *** - Invalid: Should return HTTP codes 400+
+2. To run tests, run `npm test`
 
 
 ## Instructions for testing on deployed endpoint
@@ -27,16 +33,16 @@ Simple Web app functioning like 'yellow pages' hosted on AWS Elastic Beanstalk
 
 ## Instruction to set up frontend
 1. Clone this repository and navigate to frontend root `./frontend`
-1. Run `npm install`
+1. Run `npm install --force`
 1. Run `npm start`
 
 
 ## Serverless Function
-1. This serverless function pulls all exchange rates around the world for the past 3 months and returns the currencies whose current rates are better than the average of the past 3 months.
+1. This serverless function pulls all exchange rates around the world for the past 3 months and returns the currencies whose current rates are better than 1.05x the average of the past 3 months.
 2. Function URL: [here](https://nazyxywbs2lgv7pea34636c7d40smpmi.lambda-url.ap-southeast-1.on.aws/)
 3. Data is displayed at the top of the frontend for easy viewing
 
-[comment]: <> (IMAGE TO FRONTEND CURRENCIES HERE)
+![](/images/frontend.png)
 
 
 
@@ -54,7 +60,7 @@ Simple Web app functioning like 'yellow pages' hosted on AWS Elastic Beanstalk
 
 ## Task B3 - Frontend
 - [x] Interact with the API using the frontend
-- [] Implementation of style e.g., using Bootstrap
+- [x] Implementation of style e.g., using Bootstrap
 
 ## Task B4 - Pull data from serverless function
 - [x] Deploying a serverless function to AWS Lambda

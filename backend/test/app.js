@@ -18,7 +18,6 @@ import {
   NOT_SUPPORTED_CODE
 } from '../constants.js'
 
-process.env.ENV= 'TEST'
 let mongoDB = process.env.ENV == "PROD" ? process.env.DB_CLOUD_URI_PROD : process.env.ENV == "TEST" ? process.env.DB_CLOUD_URI_TEST : process.env.DB_LOCAL_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 

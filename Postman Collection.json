@@ -91,7 +91,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\",\r\n    \"roles\": \"user\"\r\n}",
+									"raw": "{\r\n    \"email\": \"test\",\r\n    \"password\": \"test\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -226,6 +226,32 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"email\": \"test@email\",\r\n    \"phone\": 111,\r\n    \"address\": \"add1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/details",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adding non numeric phone - Valid",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@email\",\r\n    \"phone\": \"aaa\",\r\n    \"address\": \"add1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -578,7 +604,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"zxcvbbn\"\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
