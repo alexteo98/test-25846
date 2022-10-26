@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-const SECRET_KEY = process.env.JWT_SECRET_KEY || "TEST_KEY"
+const SECRET_KEY = "TEST_KEY"
 
 const allowedRoles = [ "admin" ]
 
@@ -23,10 +23,12 @@ export const verifyAccess = async _token => {
 }
 
 export const verifyToken = async _token => {
-    console.log("checkiong signarute")
-    if (!_token || _token == '') 
+    //console.log("checkiong signature of " + _token)
+    if (!_token || _token == ''){
+        console.log('no token')
         return false
-    
+    }
+
     try{
         jwt.verify(_token,SECRET_KEY)
         return true

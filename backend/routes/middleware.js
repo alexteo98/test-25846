@@ -1,4 +1,4 @@
-import { verifyAccess, verifyToken } from "../utils/auth"
+import { verifyAccess, verifyToken } from "../utils/auth.js"
 
 export const auth = async (req,res,next) => {
     try{
@@ -18,13 +18,18 @@ export const auth = async (req,res,next) => {
 export const authAdmin = async (req,res,next) => {
     try{
         const token = (req.headers['authorization'])
-        console.log(`Checking access rights`);
-        
-        if (await verifyAccess(token)){
-            next()
-        } else {
+
+        if (!(await verifyToken(token))){
+            //console.log('authentication failed')
+            return res.status(401).send()
+        } 
+
+        if (!(await verifyAccess(token))){
+            //console.log('authorization failed')
             return res.status(403).send()
         }
+
+        next()
     } catch (err) {
         res.status(403).send('Forbidden')
     }

@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors';
 import userRoutes from './routes/users-routes.js'
 import detailsRouter from './routes/details-routes.js';
-import authRouter from './routes/login-routes.js';
+import adminRouter from './routes/admin-routes.js';
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -25,5 +25,6 @@ app.listen(port, () => {
 // Use Api routes in the App
 app.use('/users', userRoutes)
 app.use('/details', detailsRouter)
+app.use('/admin', adminRouter)
 
 export default app
