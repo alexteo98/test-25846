@@ -30,9 +30,15 @@ export async function authUser(params) {
 export async function deleteUser(params) {
     try{
         //console.log(params)
-        var res = await UserModel.deleteOne(params)
-        var res1 = await UserDetailsModel.deleteOne({email: params.email})
-        return res && res1
+        var detailsExist = await UserDetailsModel.findOne({email: params.email}) || null
+        if (detailsExist){
+            var detailsDeleted = await UserDetailsModel.deleteOne({email: params.email})
+            var res = await UserModel.deleteOne(params)
+            return (res.deletedCount + detailsDeleted.deletedCount == 2)
+        } else {
+            var res = await UserModel.deleteOne(params)
+            return res.deletedCount == 1;
+        }
     } catch (err){
         //console.log('error occured on delete')
         return { err }

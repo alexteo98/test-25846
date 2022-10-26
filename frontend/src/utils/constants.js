@@ -1,5 +1,5 @@
-export const BACKEND_DEPLOYMENT_URL = 'http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com'
-//export const BACKEND_DEPLOYMENT_URL = 'http://localhost:8080'
+//export const BACKEND_DEPLOYMENT_URL = 'http://mytestapp25846-env.eba-2byxqhms.ap-southeast-1.elasticbeanstalk.com'
+export const BACKEND_DEPLOYMENT_URL = 'http://localhost:8080'
 
 export const URL_LOGIN_ROUTE = BACKEND_DEPLOYMENT_URL + "/users/login"
 export const URL_SIGNUP_ROUTE = BACKEND_DEPLOYMENT_URL + "/users/signup"

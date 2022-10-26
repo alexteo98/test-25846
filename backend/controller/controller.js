@@ -30,7 +30,7 @@ const SECRET_KEY = "TEST_KEY"
 
 export async function createUser(req,res) {
     try{
-        const { email, password, phone } = req.body
+        const { email, password } = req.body
         if (email && password){
             const resp = await _createUser(email,password)
             if (resp.err){
@@ -53,9 +53,10 @@ export async function deleteUser(req,res) {
         if (email && password){
             const resp = await _deleteUser(req.body)
             if (resp.err){
+                console.log(resp.err)
                 return res.status(WRONG_CREDENTIALS_CODE).json({ status:WRONG_CREDENTIALS_CODE, message: WRONG_CREDENTIALS_MESSAGE })
             }else {
-                if (resp.deletedCount > 0)
+                if (resp)
                     return res.status(OK_CODE).json({ status:OK_CODE, message: `Deleted user ${email}`});
                 else
                     return res.status(WRONG_CREDENTIALS_CODE).json({ status:WRONG_CREDENTIALS_CODE, message: WRONG_CREDENTIALS_MESSAGE })
@@ -89,8 +90,10 @@ export async function getUserDetails(req, res) {
 
 export async function setUserDetails(req,res) {
     try{
-        const { email, phone, address} = req.body
+        var { email, phone, address} = req.body
         if (email){
+            phone = Number(phone) || null
+            console.log("phone number is " + phone)
             var resp = await _setUserDetails({email,phone,address})
             if (resp.err){
                 return res.status(WRONG_CREDENTIALS_CODE).json({status:WRONG_CREDENTIALS_CODE, message: WRONG_CREDENTIALS_MESSAGE })
@@ -101,6 +104,7 @@ export async function setUserDetails(req,res) {
             return res.status(MISSING_CREDENTIALS_CODE).json({ status:MISSING_CREDENTIALS_CODE, message: MISSING_CREDENTIALS_MESSAGE })
         }
     } catch(err){
+        console.log(err)
         return res.status(GENERAL_SERVER_CODE).json({ status:GENERAL_SERVER_CODE, message: GENERAL_SERVER_MESSAGE, error: err })
     }
     

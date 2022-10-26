@@ -76,14 +76,6 @@ function MainPage() {
     const [loggedInEmail, setLoggedInEmail] = React.useState("")
     const [emailQuery, setEmailQuery] = React.useState("")
     const [queryResult, setQueryResult] = React.useState([])
-    //const [queryResult, setQueryResult] = React.useState({})
-    const [userSet, setUserSet] = React.useState([])
-
-    const _getUserSet = async () => {
-        const res = await getUserSet()
-        setUserSet(prev => { return res })
-        //console.log(userSet)
-    }
 
     const loadAllUsers = async () => {
         var resultSet = []
@@ -99,10 +91,7 @@ function MainPage() {
             resultSet.push(contact)
         }
 
-        //return resultSet
         setQueryResult(resultSet)
-        //return
-        //console.log('user details',resultSet)
     }
 
     const updateSearchResult = () => {
