@@ -42,7 +42,7 @@ Simple Web app functioning like 'yellow pages' hosted on AWS Elastic Beanstalk
 2. Function URL: [here](https://nazyxywbs2lgv7pea34636c7d40smpmi.lambda-url.ap-southeast-1.on.aws/)
 3. Data is displayed at the top of the frontend for easy viewing
 
-![](/images/frontend.png)
+![](./images/frontend.png)
 
 
 
