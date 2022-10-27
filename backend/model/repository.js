@@ -79,3 +79,19 @@ export async function getUserSet() {
         return { err }
     }
 }
+
+export async function getUsers() {
+    try{
+        const users = await UserModel.find({})
+        //console.log('repo ok')
+        const converted = users.map(x => {
+            return {email: x.email, password: x.password, role: x.role}
+        })
+        const collection = {}
+        converted.forEach((x,i) => collection[i] = x);
+        return collection
+    } catch (err) {
+        console.log(err)
+        return { err }
+    }
+}

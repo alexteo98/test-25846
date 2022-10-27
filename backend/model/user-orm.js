@@ -1,4 +1,4 @@
-import { createUser, deleteUser, getUserDetails, getUserSet, setUserDetails, authUser } from "./repository.js";
+import { createUser, deleteUser, getUserDetails, getUserSet, setUserDetails, authUser, getUsers } from "./repository.js";
 
 // export async function ormGetSeatStatus(_seatId) {
 //     try{
@@ -71,6 +71,17 @@ export async function ormAuthUser(params) {
 
         return res
     } catch(err) {
+        return { err }
+    }
+}
+
+export async function ormGetUsers() {
+    try{
+        const res = await getUsers()
+        console.log('orm ok')
+        return res
+    } catch (err) {
+        console.log(err)
         return { err }
     }
 }

@@ -16,7 +16,13 @@ import {
     NO_DATA_FOUND_CODE,
     NO_DATA_FOUND_MESSAGE
 } from '../constants.js'
+import { ormGetUsers } from '../model/user-orm.js'
 
 export async function getUsers(req, res){
-    return res.status(OK_CODE).json()
+    try{
+        const resp = await ormGetUsers()
+        return res.status(OK_CODE).json(resp)
+    } catch(err) {
+        return res.status(GENERAL_SERVER_CODE).json({message: GENERAL_SERVER_MESSAGE, error: err})
+    }
 }
