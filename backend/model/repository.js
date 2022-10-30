@@ -85,7 +85,7 @@ export async function getUsers() {
         const users = await UserModel.find({})
         //console.log('repo ok')
         const converted = users.map(x => {
-            return {email: x.email, password: x.password, role: x.role}
+            return {email: x.email, role: x.role}
         })
         const collection = {}
         converted.forEach((x,i) => collection[i] = x);
