@@ -12,7 +12,7 @@ export async function getMockData(req,res) {
             data = await fetch_url()
             await cache.set('store', JSON.stringify(data))
         }
-        return res.status(200).json(data)
+        return res.status(200).json(JSON.parse(data))
     } catch(err) {
         console.log(err)
         return res.status(500).json({})
