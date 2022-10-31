@@ -1,4 +1,5 @@
 import { UserDetailsModel, UserModel } from './user-model.js';
+import { MockModel } from './mock-model.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 dotenv.config()
@@ -77,5 +78,21 @@ export async function getUserSet() {
         return userSet
     } catch (err) {
         return { err }
+    }
+}
+
+export async function getMockData() {
+    try{
+        var res
+        const mock = MockModel.find().exec()
+        await mock.then((result)=>{
+            //console.log('repo' + result)
+            console.log(result)
+            res=result
+
+        })
+        return res
+    } catch (err) {
+        return {err}
     }
 }

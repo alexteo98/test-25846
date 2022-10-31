@@ -1,6 +1,8 @@
 //import mock_data from "../model/mock-data.js";
 import axios from "axios"
 import { createClient } from "redis"
+import { getMockData as _getFromDb } from "../model/repository.js"
+
 const url = 'http://jsonplaceholder.typicode.com/comments'
 const cache = createClient()
 cache.connect()
@@ -8,11 +10,13 @@ cache.connect()
 export async function getMockData(req,res) {
     try{
         var data = await fetch_cache()
-        if(!data){
-            data = await fetch_url()
+        if (data){
+            return res.status(200).json(JSON.parse(data))
+        } else {
+            data = await fetch_data()
             await cache.set('store', JSON.stringify(data))
+            return res.status(200).json(data)
         }
-        return res.status(200).json(JSON.parse(data))
     } catch(err) {
         console.log(err)
         return res.status(500).json({})
@@ -20,10 +24,11 @@ export async function getMockData(req,res) {
     
 }
 
-async function fetch_url(){
+async function fetch_data(){
     try{
-        const resp=await axios.get(url)
-        return resp.data
+        const resp = await _getFromDb()
+        console.log('fetching ' + resp)
+        return resp
     } catch(err){
         console.log(err)
         return null
