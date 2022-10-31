@@ -14,7 +14,7 @@ export async function getMockData(req,res) {
             return res.status(200).json(JSON.parse(data))
         } else {
             data = await fetch_data()
-            await cache.set('store', JSON.stringify(data))
+            await cache.setEx('store',30, JSON.stringify(data))
             return res.status(200).json(data)
         }
     } catch(err) {
@@ -26,8 +26,8 @@ export async function getMockData(req,res) {
 
 async function fetch_data(){
     try{
+        console.log('fetching from db...')
         const resp = await _getFromDb()
-        console.log('fetching ' + resp)
         return resp
     } catch(err){
         console.log(err)

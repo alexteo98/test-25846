@@ -86,10 +86,7 @@ export async function getMockData() {
         var res
         const mock = MockModel.find().exec()
         await mock.then((result)=>{
-            //console.log('repo' + result)
-            console.log(result)
             res=result
-
         })
         return res
     } catch (err) {
