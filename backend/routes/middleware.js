@@ -1,5 +1,7 @@
 import { verifyAccess, verifyToken } from "../utils/auth.js"
 
+const acl = [ "admin" ]
+
 export const auth = async (req,res,next) => {
     try{
         const token = (req.headers['authorization'])
@@ -15,25 +17,26 @@ export const auth = async (req,res,next) => {
     }
 }
 
-export const authAdmin = async (req,res,next) => {
-    try{
-        const token = (req.headers['authorization'])
+export const authACL = (acl) => {
+    return async (req,res,next) => {
+        try{
+            const token = (req.headers['authorization'])
 
-        if (!(await verifyToken(token))){
-            //console.log('authentication failed')
-            return res.status(401).send()
-        } 
+            if (!(await verifyToken(token))){
+                //console.log('authentication failed')
+                return res.status(401).send()
+            } 
 
-        if (!(await verifyAccess(token))){
-            //console.log('authorization failed')
-            return res.status(403).send()
+            if (!(await verifyAccess(acl,token))){
+                //console.log('authorization failed')
+                return res.status(403).send()
+            }
+
+            next()
+        } catch (err) {
+            res.status(403).send('Forbidden')
         }
-
-        next()
-    } catch (err) {
-        res.status(403).send('Forbidden')
     }
-    
 }
 
 export const block = (req,res,next) => {

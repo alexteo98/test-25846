@@ -3,7 +3,7 @@ const SECRET_KEY = "TEST_KEY"
 
 const allowedRoles = [ "admin" ]
 
-export const verifyAccess = async _token => {
+export const verifyAccess = async (acl,_token) => {
     try{
         console.log(SECRET_KEY)
         const valid = await verifyToken(_token)
@@ -12,7 +12,7 @@ export const verifyAccess = async _token => {
         const res = jwt.decode(_token)
         const tokenRoles = res.role.split(',')
         
-        const matchingRoles = tokenRoles.filter(i => allowedRoles.includes(i))
+        const matchingRoles = tokenRoles.filter(i => acl.includes(i))
 
         return matchingRoles.length > 0;
 
