@@ -5,7 +5,7 @@ import { stub } from "../utils/stub.js"
 import CurrencyCard from "./CurrencyCard.js"
 
 
-const URL = 'https://nazyxywbs2lgv7pea34636c7d40smpmi.lambda-url.ap-southeast-1.on.aws/'
+const URL = 'https://jp2dwb2hhe2o46zzaoc2xnxrjy0kyltw.lambda-url.ap-southeast-1.on.aws/'
 
 function CurrencyPanel() {
     const [currencies, setCurrencies] = React.useState([])
